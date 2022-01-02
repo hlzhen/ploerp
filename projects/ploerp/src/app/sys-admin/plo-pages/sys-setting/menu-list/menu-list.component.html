@@ -1,0 +1,79 @@
+<plo-page-header [subTitle]="subTitel"></plo-page-header>
+<div class="plo-page-table-action">
+    <div class="plo-page-table-item">
+      <label class="plo-page-table-lable">菜单名称</label>
+      <span class="plo-page-table-content">
+          <nz-input-group [nzSuffix]="inputClearTpl">
+            <input type="text" nz-input [(ngModel)]="menuName" placeholder="请输入菜单名称" (keyup.enter)="keyupEnter($event)"/>
+          </nz-input-group>
+          <ng-template #inputClearTpl>
+            <i nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="menuName" (click)="menuName = null"></i>
+          </ng-template>
+      </span>
+    </div>
+    <div class="plo-page-table-item">
+      <label class="plo-page-table-lable">状态</label>
+      <span class="plo-page-table-content">
+        <nz-select nzAllowClear nzPlaceHolder="请选择菜单状态" [(ngModel)]="state" nzSize="default">
+          <nz-option nzLabel="正常" nzValue="1"></nz-option>
+          <nz-option nzLabel="维护" nzValue="2"></nz-option>
+        </nz-select>
+      </span>
+    </div>
+    <div class="plo-page-table-btn">
+      <button nz-button nzType="primary" (click)="doSearch()" [disabled]="loading"><i nz-icon nzType="search"></i>查询</button>
+      <button nz-button nzType="default" (click)="doRefresh()" [disabled]="loading"><i nz-icon nzType="sync"></i>刷新</button>
+      <button nz-button nzType="default" (click)="doExpanded(expansion)" [disabled]="loading">
+        <i nz-icon [nzType]="expansion ? 'down' : 'right'"></i>
+        {{expansion ? '全部关闭' : '全部展开'}}
+      </button>
+      <button nz-button nzType="default" (click)="doCreateMenu()"><i nz-icon nzType="plus"></i>新增</button>
+    </div>
+</div>
+<nz-table 
+  #expandTable 
+  [nzData]="listOfMapData"
+  nzSize="small"
+  nzTableLayout="fixed"
+  nzFrontPagination="false"
+  nzShowPagination="false"
+  nzOuterBordered
+  [nzLoading]="loading">
+  <thead>
+    <tr>
+      <th nzWidth="25px"></th>
+      <th>菜单名称</th>
+      <th nzWidth="140px" nzAlign="center">图标</th>
+      <th>路由</th>
+      <th nzWidth="140px" nzAlign="center">状态</th>
+      <th nzWidth="200px">创建时间</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody style="color: rgba(0, 0, 0, 0.637);">
+    <ng-container *ngFor="let data of expandTable.data">
+      <ng-container *ngFor="let item of mapOfExpandedData[data.id]">
+        <tr *ngIf="(item.parent && item.parent.expand) || !item.parent">
+          <td nzAlign="right" 
+            [nzShowExpand]="!!item.children && item.children.length !== 0" 
+            [(nzExpand)]="item.expand"
+            (nzExpandChange)="collapse(mapOfExpandedData[data.id], item, $event)">
+          </td>
+          <td [nzIndentSize]="item.lev! * 2"> {{ item.title }}</td>
+          <td nzAlign="center"><i nz-icon [nzType]="item.icon" nzTheme="outline" ></i></td>
+          <td> {{item.link}}</td>
+          <td nzAlign="center">
+            <i *ngIf="item.state === 1" nz-icon nzType="check-circle" nzTheme="twotone" nzTwotoneColor="#7a7af1"></i>
+            <i *ngIf="item.state === 2" nz-icon nzType="warning" nzTheme="twotone" nzTwotoneColor="#fda12a"></i>
+          </td>
+          <td>{{item.cdt}}</td>
+          <td class="plo-flex-row mx-start sx-center wrap">
+            <a nz-button nzType="link" nzSize="small">新增</a>
+            <a nz-button nzType="link" nzSize="small">编辑</a>
+            <a nz-button nzType="link" nzDanger nzSize="small" (click)="doDel(item)">删除</a>
+          </td>
+        </tr>
+      </ng-container>
+    </ng-container>
+  </tbody>
+</nz-table>

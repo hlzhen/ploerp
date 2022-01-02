@@ -1,0 +1,24 @@
+<div>
+    <div class="plo-logo plo-text-center">1</div>
+    <ul nz-menu nzMode="inline" [nzInlineCollapsed]="inlineCollapsed" style="border: none;user-select:none;">
+        <!-- ng-container 不会在页面生成元素 从而利用这个元素递归生成无限极菜单 -->
+        <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menus }"></ng-container>
+        <ng-template #menuTpl let-menus>
+            <ng-container *ngFor="let item of menus">
+                <!-- 因为官方组件原因 递归生成的子菜单项不能直接用icon 与 title 所以需要单独定义 -->
+                <li *ngIf="item.children.length == 0" nz-menu-item nzMatchRouter (click)="itemMenuClick(item)"
+                    [nzPaddingLeft]="item.lev * 18">
+                    <i nz-icon [nzType]="item.icon"></i>
+                    <span>{{item.title }}</span>
+                    <a [routerLink]="[item.link]"></a>
+                </li>
+                <li nz-submenu *ngIf="item.children.length > 0" [nzOpen]="item.open" [nzPaddingLeft]="item.lev * 18"
+                    [ngStyle]="{'color': item.color}" [nzTitle]="item.title" [nzIcon]="item.icon">
+                    <ul>
+                        <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: item.children }"></ng-container>
+                    </ul>
+                </li>
+            </ng-container>
+        </ng-template>
+    </ul>
+</div>

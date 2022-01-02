@@ -1,0 +1,14 @@
+<plo-lock #lock (unlockCallback)="unlockCallback($event)"></plo-lock>
+<div class="plo-header-nav">
+    <ul class="plo-header-nav-item">
+        <li (click)="doCollapsed(isCollapsed)">
+            <i nz-icon [ngStyle]="{'color': '#7a7af1'}" [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" nzTheme="outline"></i>
+        </li>
+        <li (click)="doLock(isLock)">
+            <i nz-icon [ngStyle]="{'color': '#7a7af1'}" [nzType]="isLock ? 'unlock' : 'lock'" nzTheme="outline"></i>
+          </li>
+        <li (click)="doFullscreen()">
+            <i nz-icon [ngStyle]="{'color': '#7a7af1'}" [nzType]="isFullscreen ? 'fullscreen-exit' : 'fullscreen'" nzTheme="outline"></i>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,13 @@
+<nz-layout class="plo-layout">
+    <nz-sider class="plo-sider" [(nzCollapsed)]="isCollapsed" [nzWidth]="180" nzTheme="light">
+        <plo-sider [inlineCollapsed]="isCollapsed"></plo-sider>
+    </nz-sider>
+    <nz-layout>
+        <nz-header class="plo-header">
+            <plo-header style="flex: 1;" (collapsed)="doCollapsed($event)"></plo-header>
+        </nz-header>
+        <nz-content class="plo-content">
+            <router-outlet style="display: none;"></router-outlet>
+        </nz-content>
+      </nz-layout>
+</nz-layout>

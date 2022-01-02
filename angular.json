@@ -1,0 +1,136 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ploerp": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "projects/ploerp",
+      "sourceRoot": "projects/ploerp/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ploerp",
+            "index": "projects/ploerp/src/index.html",
+            "main": "projects/ploerp/src/main.ts",
+            "polyfills": "projects/ploerp/src/polyfills.ts",
+            "tsConfig": "projects/ploerp/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ploerp/src/favicon.ico",
+              "projects/ploerp/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "projects/ploerp/src/styles.less",
+              "projects/ploerp/src/themes/purple.less"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ploerp/src/environments/environment.ts",
+                  "with": "projects/ploerp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ploerp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ploerp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ploerp:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ploerp/src/test.ts",
+            "polyfills": "projects/ploerp/src/polyfills.ts",
+            "tsConfig": "projects/ploerp/tsconfig.spec.json",
+            "karmaConfig": "projects/ploerp/karma.conf.js",
+            "assets": [
+              "projects/ploerp/src/favicon.ico",
+              "projects/ploerp/src/assets"
+            ],
+            "styles": [
+              "projects/ploerp/src/styles.less",
+              "projects/ploerp/src/themes/purple.less"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ploerp/tsconfig.app.json",
+              "projects/ploerp/tsconfig.spec.json",
+              "projects/ploerp/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ploerp/e2e/protractor.conf.js",
+            "devServerTarget": "ploerp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ploerp:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "ploerp"
+}

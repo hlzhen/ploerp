@@ -1,0 +1,13 @@
+<plo-page-header [subTitle]="subTitel" [backTitle]="backTitle" [showBack]="showBack" (onBack)="goBack($event)">
+</plo-page-header>
+
+
+
+
+
+
+
+<div class="plo-page-footer">
+    <div style="flex:1 1 auto;">1</div>
+    <plo-pagination [pageSize]="15" [total]="200" [totalPage]="10" [pageSizeOptions]="[15,25,35,45,55]" (paginationCallback)="paginationCallback($event)"></plo-pagination>
+</div>

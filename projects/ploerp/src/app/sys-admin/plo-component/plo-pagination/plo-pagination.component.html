@@ -1,0 +1,16 @@
+<div class="plo-pagination">
+    <span class="plo-pagination-ud" (click)="ploPageIndexChange({which:0})"><i nz-icon nzType="left" nzTheme="outline"></i></span>
+    <input style="width: 40px;" nz-input nzSize="small" [(ngModel)]="currentPage" (keyup.enter)="ploPageIndexChange($event)"/>
+    <span>/</span>
+    <span>{{totalPage}}</span>
+    <span class="plo-pagination-ud" (click)="ploPageIndexChange({which:1})"><i nz-icon nzType="right" nzTheme="outline"></i></span>
+    <span>
+        <nz-select 
+            nzSize="small" 
+            [(ngModel)]="pageSize" 
+            [nzOptions]="pageSizeOption" 
+            (ngModelChange)="ploSelectedChange($event)">
+        </nz-select>
+    </span>
+    <span>共 {{total}} 条</span>
+</div>
