@@ -9,12 +9,14 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { PloPageNotfoundComponent } from './plo-page-notfound/plo-page-notfound.component';
+import { NzResultModule } from 'ng-zorro-antd/result';
 
 
 
 
 @NgModule({
-  declarations: [PloPageHeaderComponent, PloPaginationComponent],
+  declarations: [PloPageHeaderComponent, PloPaginationComponent, PloPageNotfoundComponent],
   imports: [
     CommonModule,
     NzPaginationModule,
@@ -24,7 +26,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     FormsModule,
     ReactiveFormsModule,
     NzSelectModule,
-    NzButtonModule
+    NzButtonModule,
+    NzResultModule
   ],
   exports: [PloPageHeaderComponent, PloPaginationComponent]
 })

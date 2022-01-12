@@ -10,6 +10,7 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { zh_CN } from 'ng-zorro-antd/i18n';
 import { HashLocationStrategy, LocationStrategy, registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import { routerGuard } from './sys-admin/plo-guard/router-guard';
 
 registerLocaleData(zh);
 
@@ -24,7 +25,7 @@ registerLocaleData(zh);
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN }, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }, { provide: LocationStrategy, useClass: HashLocationStrategy }, routerGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
