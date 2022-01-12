@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PloLoginRoutingModule } from './plo-login-routing.module';
+import { SysLoginRoutingModule } from './sys-login-routing.module';
 import { LoginComponent } from './login/login.component';
 
 
@@ -9,7 +9,7 @@ import { LoginComponent } from './login/login.component';
   declarations: [LoginComponent],
   imports: [
     CommonModule,
-    PloLoginRoutingModule
+    SysLoginRoutingModule
   ]
 })
-export class PloLoginModule { }
+export class SysLoginModule { }

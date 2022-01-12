@@ -5,12 +5,19 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
-  }
+    component: LoginComponent,
+    pathMatch: 'full'
+  },
+  // {
+  //   path: '',
+  //   redirectTo: '',
+  //   pathMatch: 'full'
+  // }
+
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class PloLoginRoutingModule { }
+export class SysLoginRoutingModule { }
