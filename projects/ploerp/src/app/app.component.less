@@ -1,0 +1,54 @@
+.plo-loading {
+  position: fixed;
+  width: 100px;
+  height: 3px;
+  z-index: 100;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.plo-loadingnone {
+  display: none;
+}
+
+.loading {
+  animation: plomove 1.5s infinite;
+}
+
+@keyframes plomove {
+  0% {
+    left: -100px;
+    background-color: transparent;
+    -webkit-animation-timing-function: ease-in;
+  }
+
+  20% {
+    left: 20%;
+    background-color: #ff0057;
+    -webkit-animation-timing-function: linear;
+  }
+
+  40% {
+    left: 40%;
+    background-color: #ffe500;
+    -webkit-animation-timing-function: linear;
+  }
+
+  60% {
+    left: 60%;
+    background-color: #7a7af1;
+    -webkit-animation-timing-function: linear;
+  }
+
+  80% {
+    left: 80%;
+    background-color: #89ff00;
+    -webkit-animation-timing-function: linear;
+  }
+
+  100% {
+    left: 100%;
+    background-color: transparent;
+    -webkit-animation-timing-function: ease-out;
+  }
+}
