@@ -14,10 +14,11 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { DruidComponent } from './druid/druid.component';
 
 
 @NgModule({
-  declarations: [MenuListComponent],
+  declarations: [MenuListComponent, DruidComponent],
   imports: [
     CommonModule,
     SysSettingRoutingModule,
