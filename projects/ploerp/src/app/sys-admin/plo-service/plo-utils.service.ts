@@ -7,13 +7,43 @@ import { Subject } from 'rxjs';
 })
 export class PloUtilsService {
 
+
   private subject = new Subject<any>();
+
+  /**
+   * 发送消息
+   * @param val 
+   */
+  public sendMessage = (val: any) => {
+    this.subject.next(val);
+  }
+
+  /**
+   * 获得消息
+   * @returns 
+   */
+  public getMessage = () => {
+    return this.subject.asObservable();
+  }
+
+  /**
+   * 清理消息
+   */
+  public clearMessage = () => {
+    this.subject.next();
+  }
+
+
 
   constructor(private router: Router) {
     if (!localStorage) {
       throw new Error('Current browser does not support Local Storage');
     }
     this.localStorage = localStorage;
+  }
+
+  redirectTo(uri: string) {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>this.router.navigate([uri]));
   }
 
   /**
