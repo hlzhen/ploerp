@@ -70,7 +70,7 @@ export class PloPaginationComponent implements OnInit {
   }
 
   ploPaginationCallback() {
-    this.paginationCallback.emit({ "currentPage": this.currentPage, "pageSize": this.pageSize });
+    this.paginationCallback.emit({ "currentPage": Number.parseInt(this.currentPage), "pageSize": this.pageSize });
   }
 
 }
